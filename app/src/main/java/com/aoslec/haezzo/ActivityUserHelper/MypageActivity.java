@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,19 +41,14 @@ public class MypageActivity extends AppCompatActivity {
     TextView tv_nickname, tv_gender, tv_agerange, tv_email, tv_address;
     ImageView iv_profileimg;
 
-
     String macIP = ShareVar.macIP;
 
-
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-
-        //네비게이션
-        main_bottomNavigationView = (BottomNavigationView)findViewById(R.id.main_bottom_navigation);
-        main_bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         tv_nickname = findViewById(R.id.tv_mypage_nickname);
         tv_gender = findViewById(R.id.tv_mypage_gender);
@@ -101,6 +97,11 @@ public class MypageActivity extends AppCompatActivity {
             }
         }); // logout
 
+        //바텀 네비게이션 클릭 시
+        main_bottomNavigationView = (BottomNavigationView)findViewById(R.id.main_bottom_navigation);
+        main_bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        menu = main_bottomNavigationView.getMenu();
+
     } //onCreate
 
     @Override //*********중요!!!
@@ -124,7 +125,6 @@ public class MypageActivity extends AppCompatActivity {
         }
     };
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -132,18 +132,32 @@ public class MypageActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    // mTextMessage.setText(R.string.title_home);
+                    item.setIcon(R.drawable.ic_home_yellow_24dp);
+                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
+
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                     overridePendingTransition(0,0);
                     return true;
+
                 case R.id.navigation_list:
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
+                    item.setIcon(R.drawable.ic_dashboard_yellow_24dp);
+                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
+
                     startActivity(new Intent(getApplicationContext(), OnDealListActivity.class));
                     finish();
                     overridePendingTransition(0,0);
                     return true;
+
                 case R.id.navigation_mypage:
-                    startActivity(new Intent(getApplicationContext(), MypageActivity.class));
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
+                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+                    item.setIcon(R.drawable.ic_mypage_yellow_24dp);
+
+                    Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
+                    startActivity(intent);
                     finish();
                     overridePendingTransition(0,0);
                     return true;

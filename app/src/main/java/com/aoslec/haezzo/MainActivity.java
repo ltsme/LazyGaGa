@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,16 +18,10 @@ import android.widget.Toast;
 
 import com.aoslec.haezzo.ActivityDocument.DocumentWriteActivity;
 import com.aoslec.haezzo.ActivityDocument.HaezulgaeListActivity;
-import com.aoslec.haezzo.ActivityHelperApply.HelperApplyIntroActivity;
 import com.aoslec.haezzo.ActivityUserHelper.HelperListActivity;
 import com.aoslec.haezzo.ActivityOnDealList.OnDealListActivity;
 import com.aoslec.haezzo.ActivityUserHelper.MypageActivity;
-import com.aoslec.haezzo.Adapter.HelperListAdapter;
-import com.aoslec.haezzo.Bean.HelperBean;
-import com.aoslec.haezzo.Bean.HelperListBean;
 import com.aoslec.haezzo.Bean.UserListBean;
-import com.aoslec.haezzo.NetworkTask.HelperCheckNetworkTask;
-import com.aoslec.haezzo.NetworkTask.HelperNetworkTask;
 import com.aoslec.haezzo.NetworkTask.UserNetworkTask;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,45 +29,32 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String strNick = ShareVar.strNick;
-    private String strProfileImg = ShareVar.strProfileImg;
-    private String strEmail = ShareVar.strEmail;
-    private String strGender = ShareVar.strGender;
-    private String strAgeRange = ShareVar.strAgeRange;
     private String strAddress = ShareVar.strAddress;
     private String tmpAddress = ""; // substring을 이용해 생략된 주소
 
-    private String addressNull = "";
     private TextView tv_main_address;
 
     // helper check
-    private String unumber = ShareVar.strUnumber;
     private String urlAddr = ShareVar.urlAddr;
     private String tmpurlAddr ;
     private ArrayList<UserListBean> userListBeans;
 
-    // --
-
-    long first_time;
-    long second_time;
-
     Button main_writeDocument;
     ImageButton main_btnHaezzo, main_btnHaezulgae;
 
+    Menu menu;
     BottomNavigationView main_bottomNavigationView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // 메인 에서 주소 출력되는 부분
         tv_main_address = findViewById(R.id.tvbtn_main_address);
         tmpAddress = strAddress.substring(strAddress.indexOf("시 ")+1, strAddress.indexOf("동")+1);
         tv_main_address.setText(tmpAddress);
+
         // 버튼 클릭 이벤트 (아래에서 case로 나뉘어짐)
         tv_main_address.setOnClickListener(onClickListener);
 
@@ -88,13 +70,10 @@ public class MainActivity extends AppCompatActivity {
         main_writeDocument = findViewById(R.id.main_writeDocument);
         main_writeDocument.setOnClickListener(onClickListener);
 
-        //바틈 네비게이션 뷰 눌렀을때
+        //바텀 네비게이션 뷰 눌렀을때
         main_bottomNavigationView = (BottomNavigationView)findViewById(R.id.main_bottom_navigation);
         main_bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
-
+        menu = main_bottomNavigationView.getMenu();
 
     }//onCreate
 
@@ -115,34 +94,44 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-
     // 바텀 네비게이션
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    // mTextMessage.setText(R.string.title_home);
+                    item.setIcon(R.drawable.ic_home_yellow_24dp);
+                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
+
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                     overridePendingTransition(0,0);
                     return true;
 
                 case R.id.navigation_list:
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
+                    item.setIcon(R.drawable.ic_dashboard_yellow_24dp);
+                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
+
                     startActivity(new Intent(getApplicationContext(), OnDealListActivity.class));
                     finish();
                     overridePendingTransition(0,0);
                     return true;
 
                 case R.id.navigation_mypage:
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
+                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+                    item.setIcon(R.drawable.ic_mypage_yellow_24dp);
+
                     Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
                     startActivity(intent);
                     finish();
                     overridePendingTransition(0,0);
                     return true;
-
             }
             return false;
         }

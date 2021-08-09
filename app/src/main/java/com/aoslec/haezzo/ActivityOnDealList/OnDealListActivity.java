@@ -3,6 +3,7 @@ package com.aoslec.haezzo.ActivityOnDealList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -25,11 +26,12 @@ public class OnDealListActivity extends AppCompatActivity {
     ViewPager2 viewPager;
     TabLayout tabLayout;
     TabPagerAdapter adapter;
-    ImageView imageView;//
+    ImageView imageView;
+
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v("Message", "onCreate_onDealList");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_deal_list);
 
@@ -69,19 +71,10 @@ public class OnDealListActivity extends AppCompatActivity {
             }
         });
 
-//        viewPager.registerOnPageChangeCallback(new ViewPager.OnPageChangeCallback() {
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                super.onPageSelected(position);
-//                tabLayout.selectTab(tabLayout.getTabAt(position));
-//            }
-//        });
-
+        //바텀 네비게이션 뷰 눌렀을때
         main_bottomNavigationView = (BottomNavigationView)findViewById(R.id.main_bottom_navigation);
         main_bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
+        menu = main_bottomNavigationView.getMenu();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -91,18 +84,32 @@ public class OnDealListActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    // mTextMessage.setText(R.string.title_home);
+                    item.setIcon(R.drawable.ic_home_yellow_24dp);
+                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
+
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                     overridePendingTransition(0,0);
                     return true;
+
                 case R.id.navigation_list:
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
+                    item.setIcon(R.drawable.ic_dashboard_yellow_24dp);
+                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
+
                     startActivity(new Intent(getApplicationContext(), OnDealListActivity.class));
                     finish();
                     overridePendingTransition(0,0);
                     return true;
+
                 case R.id.navigation_mypage:
-                    startActivity(new Intent(getApplicationContext(), MypageActivity.class));
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
+                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+                    item.setIcon(R.drawable.ic_mypage_yellow_24dp);
+
+                    Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
+                    startActivity(intent);
                     finish();
                     overridePendingTransition(0,0);
                     return true;
