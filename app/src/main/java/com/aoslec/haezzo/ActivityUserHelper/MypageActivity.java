@@ -102,6 +102,11 @@ public class MypageActivity extends AppCompatActivity {
         main_bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         menu = main_bottomNavigationView.getMenu();
 
+        // 바텀 네비게이션 버튼
+        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_home_black_24dp);
+        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+        menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_yellow_24dp);
+
     } //onCreate
 
     @Override //*********중요!!!
@@ -132,9 +137,6 @@ public class MypageActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    item.setIcon(R.drawable.ic_home_yellow_24dp);
-                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
-                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
 
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
@@ -142,9 +144,6 @@ public class MypageActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_list:
-                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
-                    item.setIcon(R.drawable.ic_dashboard_yellow_24dp);
-                    menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
 
                     startActivity(new Intent(getApplicationContext(), OnDealListActivity.class));
                     finish();
@@ -152,9 +151,6 @@ public class MypageActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_mypage:
-                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_black_24dp);
-                    menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
-                    item.setIcon(R.drawable.ic_mypage_yellow_24dp);
 
                     Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
                     startActivity(intent);
