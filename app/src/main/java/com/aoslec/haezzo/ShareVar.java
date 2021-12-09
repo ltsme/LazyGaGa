@@ -4,7 +4,7 @@ public class ShareVar {
 
     // 공용 IP, Tomcat 주소
     public static String macIP = "192.168.0.8";
-    public static String urlAddr = "http://" + macIP + ":8080/test/Haezzo/";
+    public static String urlAddr = "http://" + macIP + ":8080/Haezzo/";
 
     // 헬퍼 최종 지원 전 임시 값 저장
     public static String hnumber = null;
@@ -18,7 +18,7 @@ public class ShareVar {
     public static String hGaGa = null;
     public static String hRating = null;
 
-    //진행중/ 진행완료 구분 값(따라 상세보기의 버튼이 달라짐)
+    //진행중, 진행완료 구분 값(따라 상세보기의 버튼이 달라짐)
     public static String Document_dstatus = null;
 
     // user, helper data

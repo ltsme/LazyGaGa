@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
     }//onCreate
 
+    // 뒤로가기 버튼 종료 이벤트
     @Override
-    public void onBackPressed() { // 뒤로가기 버튼 누를 때 이벤트
-
+    public void onBackPressed() {
         new AlertDialog.Builder(MainActivity.this)
                 .setIcon(R.mipmap.ic_launcher)
                 .setTitle("앱 종료")
@@ -147,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
                     // 로그인 체크를 위해 GET 방식으로 작성
                     tmpurlAddr = urlAddr + "helperCheckSelect.jsp?" + "unumber=" + ShareVar.strUnumber;
                     connectLoginData();
-                    Log.v("testmessage : unumber ", ShareVar.strUnumber);
-                    Log.v("testmessage : get ", userListBeans.get(0).getUemail());
 //                    if (userListBeans.get(0).getUemail().length()==0) { // 받은 hnumber가 비어 있을 때
 //                        new AlertDialog.Builder(MainActivity.this)
 //                                .setIcon(R.mipmap.ic_launcher)
@@ -189,8 +187,6 @@ public class MainActivity extends AppCompatActivity {
             //jsp통해서 받아온 return 값 -> object
             Object obj = usernetworkTask.execute().get();
             userListBeans = (ArrayList<UserListBean>) obj;
-            Log.v("message", "helpercheck bean완성!");
-
         }catch (Exception e){
             e.printStackTrace();
         }

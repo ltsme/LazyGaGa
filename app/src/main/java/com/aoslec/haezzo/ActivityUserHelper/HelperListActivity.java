@@ -40,7 +40,7 @@ public class HelperListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_helper_list);
 
-        urlAddr = "http://"+ macIP + ":8080/test/Haezzo/helperSelectList.jsp?";
+        urlAddr = "http://"+ macIP + ":8080/Haezzo/helperSelectList.jsp?";
         //리스트 뷰에서 학번 1 -> 수정 -- finish 없어지고 다시 리스트뷰 화면으로 넘어와서 그 화면에서 바뀐 장면 보여줘야 함
         //아래에 있는 뷰에 정보를 줘야함
         //화면이 뜰때: resume , 다음화면에 있다가 다시 와도 resume 부터 한다.

@@ -82,20 +82,17 @@ public class KakaoLoginActivity extends AppCompatActivity {
                         ShareVar.strAgeRange = agerange;
                         ShareVar.strProfileImg = profileImg;
 
+
                         // 로그인 체크를 위해 GET 방식으로 작성
                         urlAddr = urlAddr + "kakaoLoginSelect.jsp?" + "uemail=" + email;
                         connectLoginData();
 
                         emailFromDB = userListBeans.get(0).getUemail();
-
-                        Log.v("LoginActivityMessage", "email : " + email);
                         if (email.equals(emailFromDB)){ // 이미 DB에 이메일이 있을 때
-                            Log.v("LoginActivityMessage", "DB에 이메일 있을 때 : " + userListBeans.get(0).getUemail());
                             Intent intent = new Intent(KakaoLoginActivity.this, GetDBDataActivity.class);
                             startActivity(intent);
                             KakaoLoginActivity.this.finish();
                         } else { // 처음 로그인 할 때
-                            Log.v("LoginActivityMessage", "DB에 이메일 있을 때 : " + userListBeans.get(0).getUemail());
                             Intent intent = new Intent(KakaoLoginActivity.this, KakaoLoginMapInsertActivity.class);
                             startActivity(intent);
                             KakaoLoginActivity.this.finish();
@@ -122,7 +119,6 @@ public class KakaoLoginActivity extends AppCompatActivity {
             //jsp통해서 받아온 return 값 -> object
             Object obj = usernetworkTask.execute().get();
             userListBeans = (ArrayList<UserListBean>) obj;
-            Log.v("LoginActivityMessage", "KakaoLogin bean완성!");
 
         }catch (Exception e){
             e.printStackTrace();

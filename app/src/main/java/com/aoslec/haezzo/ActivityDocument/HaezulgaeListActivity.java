@@ -38,7 +38,7 @@ public class HaezulgaeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_haezulgae_list);
 
-        urlAddr = "http://"+ macIP + ":8080/test/Haezzo/haezulgaeDocumentSelectList.jsp?";
+        urlAddr = "http://"+ macIP + ":8080/Haezzo/haezulgaeDocumentSelectList.jsp?";
 
         recyclerView = findViewById(R.id.lv_haezulgaeList);
         layoutManager = new LinearLayoutManager(HaezulgaeListActivity.this);
