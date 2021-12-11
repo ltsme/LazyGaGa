@@ -18,7 +18,7 @@
             android:id="@+id/tvbtn_main_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="<주소 영역>"
+            android:text="주소 영역"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:text="여러분들의 \n기술을 뽐내 보세요"
+        android:text="여러분들의 \n 기술을 뽐내 보세요"
         android:backgroundTint="#404040"
         android:textColor="#FFFFCD00"
         android:textSize="15dp"
