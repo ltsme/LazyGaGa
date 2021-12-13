@@ -73,19 +73,20 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
         BufferedReader bufferedReader = null;
 
         String result =null; // networktask 잘 했는지 안했는지 받을 거임
-
         try{
+
             URL url = new URL(mAddr);//ip주소 -- 생성자 할때 받음
-            Log.v("Message","doinBackGround_url = " + url + " 입니다.");
+            Log.e("Message","UserNetworkTask_doinBackGround_url = " + url + " 입니다.");
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
             //서버 받으려면 무조건 httpurl 필요하구나.
 
             if(httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                Log.e("Debug","If 조건 진입 성공");
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
-                Log.v("Message","bufferedReader :" + bufferedReader + "입니다.");
+                Log.e("Message","bufferedReader :" + bufferedReader + "입니다.");
 
                 //--> string 인식 하려구!
                 while (true){
@@ -96,24 +97,26 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
 
                 //이제 JSON 을 만들어 줘야 하므로 구분하자
                 //넌 무슨 기능이니? select, insert, delete
-                Log.v("message", "UserNetwork 구분 시작");
+                Log.e("message", "UserNetwork 구분 시작");
 
                 if(where.equals("select")){
-                    Log.v("message", "select");
+                    Log.e("message", "select");
                     parserSelect(stringBuffer.toString());
 
                 }else if(where.equals("login")){
-                    Log.v("message", "login");
+                    Log.e("message", "login");
                     parserLogin(stringBuffer.toString());
 
                 }else if(where.equals("helpercheck")) {
-                    Log.v("message", "helpercheck");
+                    Log.e("message", "helpercheck");
                     parserhelpercheck(stringBuffer.toString());
 
                 }else { //insert, update, delete
                     //return 값이 있다.
                     result = parserAction(stringBuffer.toString());
                 }
+            } else {
+                Log.e("Debug","If 조건 진입 실패");
             }
 
         }catch (Exception e){
@@ -151,14 +154,14 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
             userListBeans.clear();
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                Log.v("message", "parserLogin");
+                Log.e("message", "parserLogin");
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String email = jsonObject1.getString("uemail");
                 UserListBean userlogin = new UserListBean(email);
                 userListBeans.add(userlogin);
             }
             if (jsonArray.length()==0) {
-                Log.v("message", "parserLogin if");
+                Log.e("message", "parserLogin if");
                 String email = "";
                 UserListBean userlogin = new UserListBean(email);
                 userListBeans.add(userlogin);
@@ -176,14 +179,14 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
             userListBeans.clear();
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                Log.v("message", "parserhelpercheck");
+                Log.e("message", "parserhelpercheck");
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String hnumber = jsonObject1.getString("hnumber");
                 UserListBean userlogin = new UserListBean(hnumber);
                 userListBeans.add(userlogin);
             }
             if (jsonArray.length()==0) {
-                Log.v("message", "parserLogin if");
+                Log.e("message", "parserLogin if");
                 String hnumber = "";
                 UserListBean userlogin = new UserListBean(hnumber);
                 userListBeans.add(userlogin);
@@ -196,7 +199,7 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
 
     // insert, update, delete
     private  String parserAction(String str){
-        Log.v("Message","parserAction 진입");
+        Log.e("Message","parserAction 진입");
         String returnValue = null;
         try {
             JSONObject jsonObject = new JSONObject(str);
@@ -211,11 +214,11 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
     private void parserSelect(String str){
         try{
             JSONObject jsonObject = new JSONObject(str);
-            Log.v("Message","jsonObject 진입");
+            Log.e("Message","jsonObject 진입");
             JSONArray jsonArray = new JSONArray(jsonObject.getString("user"));
-            Log.v("Message","jsonArray 진입");
+            Log.e("Message","jsonArray 진입");
             userListBeans.clear();
-            Log.v("Message", "  - parserSelect : userLists clear OK");
+            Log.e("Message", "  - parserSelect : userLists clear OK");
 
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
@@ -241,7 +244,7 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
 
 
         }catch (Exception e){
-            Log.v("Message", "Fail to get DB");
+            Log.e("Message", "Fail to get DB");
             e.printStackTrace();
         }
     }

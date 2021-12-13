@@ -87,17 +87,20 @@ public class KakaoLoginActivity extends AppCompatActivity {
                         urlAddr = urlAddr + "kakaoLoginSelect.jsp?" + "uemail=" + email;
                         connectLoginData();
 
+                        Log.e("Debug", "Connect 이후 Email is " + email);
+
                         emailFromDB = userListBeans.get(0).getUemail();
                         if (email.equals(emailFromDB)){ // 이미 DB에 이메일이 있을 때
+                            Log.e("Debug", "성공");
                             Intent intent = new Intent(KakaoLoginActivity.this, GetDBDataActivity.class);
                             startActivity(intent);
                             KakaoLoginActivity.this.finish();
                         } else { // 처음 로그인 할 때
+                            Log.e("Debug", "실패");
                             Intent intent = new Intent(KakaoLoginActivity.this, KakaoLoginMapInsertActivity.class);
                             startActivity(intent);
                             KakaoLoginActivity.this.finish();
                         }
-
                     } // onSuccess
                 });
             } // onSessionOpened
@@ -119,6 +122,7 @@ public class KakaoLoginActivity extends AppCompatActivity {
             //jsp통해서 받아온 return 값 -> object
             Object obj = usernetworkTask.execute().get();
             userListBeans = (ArrayList<UserListBean>) obj;
+            Log.e("Debug","Connect 성공적인 완료");
 
         }catch (Exception e){
             e.printStackTrace();
