@@ -5,14 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="7"
+    >
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:gravity="center"
-        android:layout_weight="0.5">
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/tvbtn_main_address"
@@ -21,90 +22,83 @@
             android:text="주소 영역"
             android:textSize="25dp"
             android:textStyle="bold" />
-
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.5"
-        >
-        <ImageButton
-            android:id="@+id/main_btnHaezzo"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/btn_haezzo"
-            android:scaleType="centerCrop"
-            android:background="@android:color/transparent"
-            />
-        <ImageButton
-            android:id="@+id/main_btnHaezulgae"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/btn_haezulgae"
-            android:scaleType="centerCrop"
-            android:background="@android:color/transparent"
-            />
-    </LinearLayout>
+        android:layout_weight="2">
 
-
-    <Button
-        android:id="@+id/main_ad"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:text="여러분들의 \n 기술을 뽐내 보세요"
-        android:backgroundTint="#404040"
-        android:textColor="#FFFFCD00"
-        android:textSize="15dp"
-        />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="2"
-        android:gravity="center"
-        >
-
-        <ImageButton
-            android:id="@+id/btnmain1"
-            android:layout_width="0px"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:src="@drawable/main1"
-            android:scaleType="centerCrop"
-            />
-
-        <ImageButton
-            android:id="@+id/btnmain2"
-            android:layout_width="0px"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:src="@drawable/main2"
-            android:scaleType="centerCrop"
-            />ㅡㅁ
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:gravity="center"
-        >
         <Button
-            android:id="@+id/main_writeDocument"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="요청하기"
-            android:textColor="@color/brown"
+            android:id="@+id/main_ad"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="여러분들의 \n\n 기술을 뽐내 보세요"
+            android:backgroundTint="#404040"
+            android:textColor="#FFFFCD00"
+            android:textSize="15dp"
             />
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:weightSum="2"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:weightSum="2"
+            >
+            <ImageButton
+                android:id="@+id/main_btnHaezzo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_haezzo"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                />
+            <ImageButton
+                android:id="@+id/main_btnHaezulgae"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_haezulgae"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:weightSum="2"
+            >
+
+            <Button
+                android:id="@+id/main_writeDocument"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="WriteDocument"
+                android:textColor="@color/brown"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

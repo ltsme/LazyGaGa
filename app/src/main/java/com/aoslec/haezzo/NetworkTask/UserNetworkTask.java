@@ -82,7 +82,6 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
             //서버 받으려면 무조건 httpurl 필요하구나.
 
             if(httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
-                Log.e("Debug","If 조건 진입 성공");
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
@@ -97,18 +96,14 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
 
                 //이제 JSON 을 만들어 줘야 하므로 구분하자
                 //넌 무슨 기능이니? select, insert, delete
-                Log.e("message", "UserNetwork 구분 시작");
 
                 if(where.equals("select")){
-                    Log.e("message", "select");
                     parserSelect(stringBuffer.toString());
 
                 }else if(where.equals("login")){
-                    Log.e("message", "login");
                     parserLogin(stringBuffer.toString());
 
                 }else if(where.equals("helpercheck")) {
-                    Log.e("message", "helpercheck");
                     parserhelpercheck(stringBuffer.toString());
 
                 }else { //insert, update, delete
@@ -116,7 +111,6 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
                     result = parserAction(stringBuffer.toString());
                 }
             } else {
-                Log.e("Debug","If 조건 진입 실패");
             }
 
         }catch (Exception e){
@@ -154,14 +148,12 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
             userListBeans.clear();
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                Log.e("message", "parserLogin");
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String email = jsonObject1.getString("uemail");
                 UserListBean userlogin = new UserListBean(email);
                 userListBeans.add(userlogin);
             }
             if (jsonArray.length()==0) {
-                Log.e("message", "parserLogin if");
                 String email = "";
                 UserListBean userlogin = new UserListBean(email);
                 userListBeans.add(userlogin);
@@ -179,14 +171,12 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
             userListBeans.clear();
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                Log.e("message", "parserhelpercheck");
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String hnumber = jsonObject1.getString("hnumber");
                 UserListBean userlogin = new UserListBean(hnumber);
                 userListBeans.add(userlogin);
             }
             if (jsonArray.length()==0) {
-                Log.e("message", "parserLogin if");
                 String hnumber = "";
                 UserListBean userlogin = new UserListBean(hnumber);
                 userListBeans.add(userlogin);
@@ -199,7 +189,6 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
 
     // insert, update, delete
     private  String parserAction(String str){
-        Log.e("Message","parserAction 진입");
         String returnValue = null;
         try {
             JSONObject jsonObject = new JSONObject(str);
@@ -214,11 +203,8 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
     private void parserSelect(String str){
         try{
             JSONObject jsonObject = new JSONObject(str);
-            Log.e("Message","jsonObject 진입");
             JSONArray jsonArray = new JSONArray(jsonObject.getString("user"));
-            Log.e("Message","jsonArray 진입");
             userListBeans.clear();
-            Log.e("Message", "  - parserSelect : userLists clear OK");
 
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
@@ -242,12 +228,9 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
                 userListBeans.add(userListBean);
             }
 
-
         }catch (Exception e){
-            Log.e("Message", "Fail to get DB");
             e.printStackTrace();
         }
     }
-
 
 }//----
