@@ -37,20 +37,7 @@
                     android:textSize="15sp" />
 
                 <Button
-                    android:id="@+id/write_btnFurniture"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.4"
-                    android:padding="10dp"
-                    android:text="가구"
-                    android:backgroundTint="@color/whitegray"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-
-                <Button
-                    android:id="@+id/write_btnElectronics"
+                    android:id="@+id/tmpabc"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="40dp"

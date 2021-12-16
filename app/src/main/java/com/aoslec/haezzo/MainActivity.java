@@ -7,18 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aoslec.haezzo.ActivityDocument.DocumentWriteActivity;
 import com.aoslec.haezzo.ActivityDocument.HaezulgaeListActivity;
-import com.aoslec.haezzo.ActivityUserHelper.HelperListActivity;
+import com.aoslec.haezzo.ActivityDocument.SimpleDocumentWriteActivity;
 import com.aoslec.haezzo.ActivityOnDealList.OnDealListActivity;
 import com.aoslec.haezzo.ActivityUserHelper.MypageActivity;
 import com.aoslec.haezzo.Bean.UserListBean;
@@ -39,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String tmpurlAddr ;
     private ArrayList<UserListBean> userListBeans;
 
-    Button main_writeDocument;
-    ImageButton main_btnHaezzo, main_btnHaezulgae;
+    ImageButton main_btnHaezzo, main_btnSimpleHaezzo, main_btnHaezulgae;
 
     Menu menu;
     BottomNavigationView main_bottomNavigationView;
@@ -67,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         main_btnHaezulgae.setOnClickListener(onClickListener);
 
         //요청하기 버튼 눌렀을 때
-        main_writeDocument = findViewById(R.id.main_writeDocument);
-        main_writeDocument.setOnClickListener(onClickListener);
+        main_btnSimpleHaezzo = findViewById(R.id.main_btnSimpleHaezzo);
+        main_btnSimpleHaezzo.setOnClickListener(onClickListener);
 
         //바텀 네비게이션 뷰 눌렀을때
         main_bottomNavigationView = (BottomNavigationView)findViewById(R.id.main_bottom_navigation);
@@ -139,9 +135,16 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.main_btnHaezzo:
-                    Intent intent = new Intent(MainActivity.this, HelperListActivity.class);
+                    // Intent intent = new Intent(MainActivity.this, HelperListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, DocumentWriteActivity.class);
                     startActivity(intent);
                     break;
+
+                case  R.id.main_btnSimpleHaezzo:
+                    Intent intent3 = new Intent(MainActivity.this, SimpleDocumentWriteActivity.class);
+                    startActivity(intent3);
+                    break;
+
                 case R.id.main_btnHaezulgae:
 
                     // 로그인 체크를 위해 GET 방식으로 작성
@@ -169,10 +172,6 @@ public class MainActivity extends AppCompatActivity {
 //                    }
                     break;
 
-                case  R.id.main_writeDocument:
-                    Intent intent3 = new Intent(MainActivity.this, DocumentWriteActivity.class);
-                    startActivity(intent3);
-                    break;
                 case R.id.tvbtn_main_address:
                     Intent intent4 = new Intent(getApplicationContext(), MypageActivity.class);
                     startActivity(intent4);

@@ -105,19 +105,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/btn_haezzo"
+                    android:src="@drawable/img_Haezzo"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     />
+
                 <ImageButton
-                    android:id="@+id/main_btnHaezulgae"
+                    android:id="@+id/main_btnSimpleHaezzo"
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/btn_haezulgae"
+                    android:src="@drawable/img_SimpleHaezzo"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
+                    android:scaleType="fitXY"
                     />
+
             </LinearLayout>
 
             <LinearLayout
@@ -127,21 +130,27 @@
                 android:weightSum="2"
                 >
 
-                <Button
-                    android:id="@+id/main_writeDocument"
-                    android:layout_gravity="center"
+                <ImageButton
+                    android:id="@+id/main_btnHaezulgae"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="WriteDocument"
-                    android:textColor="@color/brown"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_Haezulgae"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     />
 
 
+
+
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            >
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,7 +163,6 @@
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 app:menu="@menu/bottom_navigation_menu" />
-
         </LinearLayout>
 
     </LinearLayout>

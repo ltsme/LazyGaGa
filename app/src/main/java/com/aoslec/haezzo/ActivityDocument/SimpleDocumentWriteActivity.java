@@ -1,15 +1,10 @@
 package com.aoslec.haezzo.ActivityDocument;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,6 +21,10 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.aoslec.haezzo.MainActivity;
 import com.aoslec.haezzo.NetworkTask.DocumentImageNetworkTask;
 import com.aoslec.haezzo.NetworkTask.DocumentNetworkTask;
@@ -38,7 +37,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DocumentWriteActivity extends AppCompatActivity {
+public class SimpleDocumentWriteActivity extends AppCompatActivity {
 
     String urlAddr = null;
     String urlAddr1 = null; // 이미지 업로드
@@ -53,7 +52,7 @@ public class DocumentWriteActivity extends AppCompatActivity {
     String dplace;
     String dpay;
     String dstatus = "대기 중"; //기본 값은 대기 중
-    String dindex = "nonSimple"; // Simple, nonSimple 구별 용
+    String dindex = "Simple"; // Simple, nonSimple 구별 용
 
     //작업용
     String dtitle, dcontent, dmoney;
@@ -91,8 +90,8 @@ public class DocumentWriteActivity extends AppCompatActivity {
 
         urlAddr = ShareVar.urlAddr + "documentInsert.jsp?";
 
-        ActivityCompat.requestPermissions(DocumentWriteActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
-        ActivityCompat.requestPermissions(DocumentWriteActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MODE_PRIVATE);
+        ActivityCompat.requestPermissions(SimpleDocumentWriteActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
+        ActivityCompat.requestPermissions(SimpleDocumentWriteActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MODE_PRIVATE);
 
 
         //연결
@@ -170,7 +169,7 @@ public class DocumentWriteActivity extends AppCompatActivity {
                     dproduct = Dproducts.getSelectedItem().toString();
 
                     urlAddr1 = "http://"+ ShareVar.macIP + ":8080/test/Haezzo/multipartRequest.jsp";
-                    DocumentImageNetworkTask networkTask = new DocumentImageNetworkTask(DocumentWriteActivity.this, urlAddr1, img_path, imageView);
+                    DocumentImageNetworkTask networkTask = new DocumentImageNetworkTask(SimpleDocumentWriteActivity.this, urlAddr1, img_path, imageView);
                     try {
                         Integer result = networkTask.execute(100).get();
                         switch (result) {
@@ -184,13 +183,13 @@ public class DocumentWriteActivity extends AppCompatActivity {
 
 //                    Toast.makeText(WriteDocumentActivity.this, "글이 입력되었습니다", Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(DocumentWriteActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SimpleDocumentWriteActivity.this, "Success!", Toast.LENGTH_SHORT).show();
 
                                 File file = new File(img_path);
                                 file.delete();
                                 break;
                             case 0:
-                                Toast.makeText(DocumentWriteActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SimpleDocumentWriteActivity.this, "Error", Toast.LENGTH_SHORT).show();
                                 break;
 
                         }
@@ -198,11 +197,11 @@ public class DocumentWriteActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Intent intent = new Intent(DocumentWriteActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SimpleDocumentWriteActivity.this, MainActivity.class);
                     startActivity(intent);
 
                     // 0702 finish() 추가
-                    DocumentWriteActivity.this.finish();
+                    SimpleDocumentWriteActivity.this.finish();
                     break;
             }
 
@@ -282,7 +281,7 @@ public class DocumentWriteActivity extends AppCompatActivity {
         try{
             //여기서 networktask
             //insertactivity에서 부른거야, 나는 ip주소 줄게 그리고     hb insert 할거야
-            DocumentNetworkTask documentNetworkTask = new DocumentNetworkTask(DocumentWriteActivity.this, urlAddr,"insert");
+            DocumentNetworkTask documentNetworkTask = new DocumentNetworkTask(SimpleDocumentWriteActivity.this, urlAddr,"insert");
             //jsp통해서 받아온 return 값 -> object
             Object obj = documentNetworkTask.execute().get();
             result = (String) obj;
