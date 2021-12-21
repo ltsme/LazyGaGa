@@ -42,47 +42,34 @@ public class DocumentWriteActivity extends AppCompatActivity {
 
     String urlAddr = null;
     String urlAddr1 = null; // 이미지 업로드
-    String dproduct ;
-    Button btnFurniture, btnElectronics, btnWrite;
-    EditText etTitle, etContent, etMoney, etAddress;
-    DatePicker dpDate;
+    Button btnWrite;
     String resultdpDate ;
-    TimePicker tpTime;
     String nHour, nMinute;
-    String dtime;
-    String dplace;
-    String dpay;
-    String dstatus = "대기 중"; //기본 값은 대기 중
-    String dindex = "nonSimple"; // Simple, nonSimple 구별 용
+    EditText etTitle, etContent, etMoney, etAddress;
 
-    //작업용
-    String dtitle, dcontent, dmoney;
+    String dindex = "nonSimple"; // Simple, nonSimple 구별 용
+    String dproduct, dtitle, dcontent, dtime, dplace, dmoney;
+    String dimage = "tmpImage";
+    DatePicker dpDate;
+    TimePicker tpTime;
+    String dstatus = "대기 중"; //기본 값은 대기 중
 
     //spinner작업
     Spinner Dproducts;
-    Spinner Dpays;
     ArrayAdapter<CharSequence> adapter = null;
-    ArrayAdapter<CharSequence> adapter2 = null;
-
-    //임시, usernumber
-    String unumber = "15";
 
     //------image 업로드, 지급수단, product 제외하고 진행 -----//
-    String dimage;
-
-    private final static String TAG = "DocumentWriteActivity";
+    private final static String TAG = ShareVar.TAG + "DocumentWriteActivity";
     ImageView imageView = null;
     private final int REQ_CODE_SELECT_IMAGE = 300; // Gallery Return Code
-    private String img_path = null; // 최종 file name
-    private String f_ext = null;    // 최종 file extension
+    private String img_path = ""; // 최종 file name
+    private String f_ext = "";    // 최종 file extension
     File tempSelectFile;
 
     String devicePath = Environment.getDataDirectory().getAbsolutePath() + "/data/com.aoslec.haezzo/";
 
-
     //IP받아오기
     String macIP = ShareVar.macIP;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +96,6 @@ public class DocumentWriteActivity extends AppCompatActivity {
         //버튼
         btnWrite = findViewById(R.id.write_btnWrite);
         btnWrite.setOnClickListener(onClickListener);
-        btnFurniture.setOnClickListener(onClickListener);
-        btnElectronics.setOnClickListener(onClickListener);
 
         //이미지뷰
         imageView.setOnClickListener(onClickListener);
@@ -131,20 +116,13 @@ public class DocumentWriteActivity extends AppCompatActivity {
             }
         });
 
-        //spinner dproduct 연결
+        //카테고리 - spinner dproduct 연결
         adapter = ArrayAdapter.createFromResource(this, R.array.dproduct_category,
                 android.R.layout.simple_spinner_dropdown_item);
 
 
         Dproducts = findViewById(R.id.write_sDproducts);
         Dproducts.setAdapter(adapter);
-
-        //spinner dpay 연결
-        adapter2 = ArrayAdapter.createFromResource(this, R.array.dpay_category,
-                android.R.layout.simple_spinner_dropdown_item);
-
-        Dpays = findViewById(R.id.write_sDpay);
-        Dpays.setAdapter(adapter2);
 
         //dplace 주소값 받아오기
         dplace = ShareVar.strAddress;
@@ -177,12 +155,10 @@ public class DocumentWriteActivity extends AppCompatActivity {
                             case 1:
                                 //get방식 url
                                 urlAddr = urlAddr + "dindex=" + dindex + "&dproduct=" + dproduct + "&dtitle=" + dtitle +
-                                        "&dimage=" + dimage + "&dcontent=" + dcontent + "&ddate=" + resultdpDate + "&dtime=" + dtime + "&dplace=" + dplace + "&dmoney=" +dmoney + "&dpay=" + dpay + "&dstatus=" + dstatus + "&unumber=" + ShareVar.strUnumber;
-                                Log.v("urlAddr", urlAddr);
+                                        "&dimage=" + dimage + "&dcontent=" + dcontent + "&ddate=" + resultdpDate + "&dtime=" + dtime + "&dplace=" + dplace + "&dmoney=" +dmoney + "&dstatus=" + dstatus + "&unumber=" + ShareVar.strUnumber;
+
                                 //urlAddr는 전역변수라 아무 메소드에서 쓸 수 있음
                                 String strResult = connectInsertData();//여기에 return값 줄거임
-
-//                    Toast.makeText(WriteDocumentActivity.this, "글이 입력되었습니다", Toast.LENGTH_SHORT).show();
 
                                 Toast.makeText(DocumentWriteActivity.this, "Success!", Toast.LENGTH_SHORT).show();
 
@@ -197,7 +173,6 @@ public class DocumentWriteActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     Intent intent = new Intent(DocumentWriteActivity.this, MainActivity.class);
                     startActivity(intent);
 
@@ -265,7 +240,6 @@ public class DocumentWriteActivity extends AppCompatActivity {
 
         //이미지의 경로 값
         String imgPath = cursor.getString(column_index);
-        Log.v(TAG, "Image Path :" + imgPath);
 
         //이미지의 이름 값
         String imgName = imgPath.substring(imgPath.lastIndexOf("/") + 1);

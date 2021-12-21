@@ -38,9 +38,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
     //String subUrl_delete = null;
     String dnumber = null;
 
-    ArrayAdapter<CharSequence> adapter2 = null;
-
-
     ArrayList<DocumentBean> documentBeans;
     Intent intent= null;
 
@@ -128,11 +125,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
         Dproducts = findViewById(R.id.DwaitingDetails_sDproducts);
         Dproducts.setAdapter(adapter);
 
-        //spinner dpay 연결
-        adapter2 = ArrayAdapter.createFromResource(this, R.array.dpay_category,
-                android.R.layout.simple_spinner_dropdown_item);
-
-        DwaitingDetails_tvDpay.setAdapter(adapter2);
 
 
         //dplace 주소값 받아오기

@@ -105,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_Haezzo"
+                    android:src="@drawable/img_haezzo"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     />
@@ -115,7 +115,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/img_SimpleHaezzo"
+                    android:src="@drawable/img_simplehaezzo"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     android:scaleType="fitXY"
@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_Haezulgae"
+                    android:src="@drawable/img_haezulgae"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     />

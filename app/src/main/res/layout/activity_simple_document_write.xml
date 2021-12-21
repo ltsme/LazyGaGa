@@ -45,7 +45,7 @@
                     android:backgroundTint="@color/whitegray"
                     android:textColor="@color/white"
                     android:padding="10dp"
-                    android:text="버튼"
+                    android:text="가전"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -187,6 +187,11 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:text="결제 수단 *" />
+
+                <Spinner
+                    android:id="@+id/write_sDpay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
         </LinearLayout>

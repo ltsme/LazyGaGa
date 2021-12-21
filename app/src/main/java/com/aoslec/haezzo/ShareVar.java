@@ -5,6 +5,7 @@ public class ShareVar {
     // 공용 IP, Tomcat 주소
     public static String macIP = "192.168.0.8"; // Mac WIFI IP
     public static String urlAddr = "http://" + macIP + ":8080/Haezzo/";
+    public static String TAG = "Message_";
 
     // 헬퍼 최종 지원 전 임시 값 저장
     public static String hnumber = null;

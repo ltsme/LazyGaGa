@@ -42,7 +42,7 @@ public class SimpleDocumentWriteActivity extends AppCompatActivity {
     String urlAddr = null;
     String urlAddr1 = null; // 이미지 업로드
     String dproduct ;
-    Button btnFurniture, btnElectronics, btnWrite;
+    Button btnWrite;
     EditText etTitle, etContent, etMoney, etAddress;
     DatePicker dpDate;
     String resultdpDate ;
@@ -86,7 +86,7 @@ public class SimpleDocumentWriteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_document_write);
+        setContentView(R.layout.activity_simple_document_write);
 
         urlAddr = ShareVar.urlAddr + "documentInsert.jsp?";
 
@@ -108,8 +108,6 @@ public class SimpleDocumentWriteActivity extends AppCompatActivity {
         //버튼
         btnWrite = findViewById(R.id.write_btnWrite);
         btnWrite.setOnClickListener(onClickListener);
-        btnFurniture.setOnClickListener(onClickListener);
-        btnElectronics.setOnClickListener(onClickListener);
 
         //이미지뷰
         imageView.setOnClickListener(onClickListener);
@@ -138,9 +136,6 @@ public class SimpleDocumentWriteActivity extends AppCompatActivity {
         Dproducts = findViewById(R.id.write_sDproducts);
         Dproducts.setAdapter(adapter);
 
-        //spinner dpay 연결
-        adapter2 = ArrayAdapter.createFromResource(this, R.array.dpay_category,
-                android.R.layout.simple_spinner_dropdown_item);
 
         Dpays = findViewById(R.id.write_sDpay);
         Dpays.setAdapter(adapter2);

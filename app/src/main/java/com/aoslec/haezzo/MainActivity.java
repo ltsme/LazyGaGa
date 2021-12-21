@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.aoslec.haezzo.ActivityDocument.DocumentWriteActivity;
+import com.aoslec.haezzo.ActivityDocument.HaezulgaeDocumentDetailsActivity;
 import com.aoslec.haezzo.ActivityDocument.HaezulgaeListActivity;
 import com.aoslec.haezzo.ActivityDocument.SimpleDocumentWriteActivity;
 import com.aoslec.haezzo.ActivityOnDealList.OnDealListActivity;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // 메인 에서 주소 출력되는 부분
         tv_main_address = findViewById(R.id.tvbtn_main_address);
         tmpAddress = strAddress.substring(strAddress.indexOf("시 ")+1, strAddress.indexOf("동")+1);
+        Log.e("log","체크3");
         tv_main_address.setText(tmpAddress);
 
         // 버튼 클릭 이벤트 (아래에서 case로 나뉘어짐)
