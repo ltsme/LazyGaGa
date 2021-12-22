@@ -2,7 +2,6 @@ package com.aoslec.haezzo.Bean;
 
 public class DocumentBean {
     private String dnumber;
-    private String dgaga;
     private String dproduct;
     private String dtitle;
     private String dimage;
@@ -11,15 +10,13 @@ public class DocumentBean {
     private String dtime;
     private String dplace;
     private String dmoney;
-    private String dpay;
     private String unumber;
     private String hnumber;
 
     //---------------------Constructor
 
-    public DocumentBean(String dnumber, String dgaga, String dproduct, String dtitle, String dimage, String dcontent, String ddate, String dtime, String dplace, String dmoney, String dpay, String unumber, String hnumber) {
+    public DocumentBean(String dnumber, String dproduct, String dtitle, String dimage, String dcontent, String ddate, String dtime, String dplace, String dmoney, String unumber, String hnumber) {
         this.dnumber = dnumber;
-        this.dgaga = dgaga;
         this.dproduct = dproduct;
         this.dtitle = dtitle;
         this.dimage = dimage;
@@ -28,12 +25,9 @@ public class DocumentBean {
         this.dtime = dtime;
         this.dplace = dplace;
         this.dmoney = dmoney;
-        this.dpay = dpay;
         this.unumber = unumber;
         this.hnumber = hnumber;
     }
-
-
     //---------------------Getter & Setter
 
 
@@ -43,14 +37,6 @@ public class DocumentBean {
 
     public void setDnumber(String dnumber) {
         this.dnumber = dnumber;
-    }
-
-    public String getDgaga() {
-        return dgaga;
-    }
-
-    public void setDgaga(String dgaga) {
-        this.dgaga = dgaga;
     }
 
     public String getDproduct() {
@@ -115,14 +101,6 @@ public class DocumentBean {
 
     public void setDmoney(String dmoney) {
         this.dmoney = dmoney;
-    }
-
-    public String getDpay() {
-        return dpay;
-    }
-
-    public void setDpay(String dpay) {
-        this.dpay = dpay;
     }
 
     public String getUnumber() {

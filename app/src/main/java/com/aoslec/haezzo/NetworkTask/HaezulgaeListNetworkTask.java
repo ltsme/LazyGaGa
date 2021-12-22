@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.aoslec.haezzo.Bean.HaezulgaeListBean;
 import com.aoslec.haezzo.Bean.HelperListBean;
+import com.aoslec.haezzo.ShareVar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -68,7 +69,6 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
 
     @Override
     protected Object doInBackground(Integer... integers) {
-        Log.v("Message","doInBackGround");
         StringBuffer stringBuffer = new StringBuffer();
         InputStream inputStream = null;
         InputStreamReader inputStreamReader = null;
@@ -78,7 +78,6 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
 
         try{
             URL url = new URL(mAddr);//ip주소 -- 생성자 할때 받음
-            Log.v("Message","doinBackGround_url" + url);
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
             //서버 받으려면 무조건 httpurl 필요하구나.
@@ -86,7 +85,6 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
-                Log.v("Message","bufferedReader :" + bufferedReader);
 
                 //--> string 인식 하려구!
                 while (true){
@@ -103,7 +101,6 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
                 }else {
                     //return 값이 있다.
                     result = parserAction(stringBuffer.toString());
-                    Log.v("Message","result :" + result);
 
                 }
             }
@@ -131,7 +128,6 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
     //{"result" : "ok"}
     //{} : JSONObject
     private  String parserAction(String str){
-        Log.v("Message","parserAction");
         String returnValue = null;
         try {
             JSONObject jsonObject = new JSONObject(str);
@@ -144,19 +140,14 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
 
     //parserSelect--> Select문을 사용할때 씀
     private void parserSelect(String str){
-        Log.v("Message","parserSelect");
         try{
             JSONObject jsonObject = new JSONObject(str);
-            Log.v("Message","jsonObject 진입");
             JSONArray jsonArray = new JSONArray(jsonObject.getString("document_info"));
-            Log.v("Message","jsonArray 진입");
             haezulgaeListBeans.clear();
-            Log.v("Message", "  - parserSelect : documentLists clear OK");
 
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String dnumber = jsonObject1.getString("dnumber");
-                String dgaga = jsonObject1.getString("dgaga");
                 String dproduct = jsonObject1.getString("dproduct");
                 String dtitle = jsonObject1.getString("dtitle");
                 String dimage = jsonObject1.getString("dimage");
@@ -165,15 +156,14 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
                 String dtime = jsonObject1.getString("dtime");
                 String dplace = jsonObject1.getString("dplace");
                 String dmoney = jsonObject1.getString("dmoney");
-                String dpay = jsonObject1.getString("dpay");
                 String unumber = jsonObject1.getString("unumber");
                 String hnumber = jsonObject1.getString("hnumber");
 
                 //여기 까지 함
 
-                Log.v("Message","unumber:" + unumber);
+                Log.v(ShareVar.TAG + "HaezulgaeListNetwork","unumber : " + unumber);
                 //어레이에 있는거 뽑아와서 빈에 올리기
-                HaezulgaeListBean haezulgaeListBean = new HaezulgaeListBean(dnumber,dgaga,dproduct,dtitle,dimage,dcontent,ddate,dtime, dplace, dmoney, dpay, unumber, hnumber);
+                HaezulgaeListBean haezulgaeListBean = new HaezulgaeListBean(dnumber,dproduct,dtitle,dimage,dcontent,ddate,dtime, dplace, dmoney, unumber, hnumber);
                 haezulgaeListBeans.add(haezulgaeListBean);
                 //members는 어레이리스트, member는 빈
                 //--->for문 돌면서 차곡차곡 쌓기

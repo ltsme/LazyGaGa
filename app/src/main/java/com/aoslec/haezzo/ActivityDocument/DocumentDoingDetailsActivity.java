@@ -32,8 +32,8 @@ public class DocumentDoingDetailsActivity extends AppCompatActivity {
 
 
     //TextView 들
-    TextView DdoingDetails_tvDgaga,DdoingDetails_tvDproducts,DdoingDetails_tvDtitle, DdoingDetails_tvDcontent, DdoingDetails_tvDdate, DdoingDetails_tvDtime,
-            DdoingDetails_tvDplace, DdoingDetails_tvDmoney, DdoingDetails_tvDpay;
+    TextView DdoingDetails_tvDproducts, DdoingDetails_tvDtitle, DdoingDetails_tvDcontent, DdoingDetails_tvDdate, DdoingDetails_tvDtime,
+            DdoingDetails_tvDplace, DdoingDetails_tvDmoney;
 
     Button DdoingDetails_btnDcomplete;
     ImageView DdoingDetails_ivDimage;
@@ -48,7 +48,6 @@ public class DocumentDoingDetailsActivity extends AppCompatActivity {
         DdoingDetails_btnDcomplete.setOnClickListener(onClickListener);
 
         //textView 연결
-        DdoingDetails_tvDgaga = findViewById(R.id.DdoingDetails_tvDgaga);
         DdoingDetails_tvDproducts = findViewById(R.id.DdoingDetails_tvDproducts);
         DdoingDetails_tvDtitle = findViewById(R.id.DdoingDetails_tvDtitle);
         DdoingDetails_tvDcontent = findViewById(R.id.DdoingDetails_tvDcontent);
@@ -56,7 +55,6 @@ public class DocumentDoingDetailsActivity extends AppCompatActivity {
         DdoingDetails_tvDtime = findViewById(R.id.DdoingDetails_tvDdate);
         DdoingDetails_tvDplace = findViewById(R.id.DdoingDetails_tvDplace);
         DdoingDetails_tvDmoney = findViewById(R.id.DdoingDetails_tvDmoney);
-        DdoingDetails_tvDpay = findViewById(R.id.DdoingDetails_tvDpay);
 
         //이미지뷰 연결
         DdoingDetails_ivDimage = findViewById(R.id.DdoingDetails_ivDimage);
@@ -95,7 +93,6 @@ public class DocumentDoingDetailsActivity extends AppCompatActivity {
 
         connectGetData();
 
-        DdoingDetails_tvDgaga.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDgaga());
         DdoingDetails_tvDproducts.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDproduct());
         DdoingDetails_tvDtitle.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDtitle());
         DdoingDetails_tvDcontent.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDcontent());
@@ -103,8 +100,6 @@ public class DocumentDoingDetailsActivity extends AppCompatActivity {
         DdoingDetails_tvDtime.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDtime());
         DdoingDetails_tvDplace.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDplace());
         DdoingDetails_tvDmoney.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDmoney());
-        DdoingDetails_tvDpay.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDpay());
-
         Glide.with(this)
                 .load(ShareVar.urlAddr + documentBeans.get((Integer.parseInt(dnumber))-1).getDimage())
                 .into(DdoingDetails_ivDimage);

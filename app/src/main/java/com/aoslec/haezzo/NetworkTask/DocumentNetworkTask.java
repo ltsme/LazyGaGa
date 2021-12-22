@@ -63,7 +63,6 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
 
     @Override
     protected Object doInBackground(Integer... integers) {
-        Log.v("Message","doInBackGround");
         StringBuffer stringBuffer = new StringBuffer();
         InputStream inputStream = null;
         InputStreamReader inputStreamReader = null;
@@ -73,7 +72,6 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
 
         try{
             URL url = new URL(mAddr);//ip주소 -- 생성자 할때 받음
-            Log.v("Message","doinBackGround_url" + url);
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
             //서버 받으려면 무조건 httpurl 필요하구나.
@@ -81,12 +79,10 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
-                Log.v("Message","bufferedReader :" + bufferedReader);
 
                 //--> string 인식 하려구!
                 while (true){
                     String strline = bufferedReader.readLine();
-                    Log.v("Message","strline :" +strline);
 
                     if(strline == null) break;
                     stringBuffer.append(strline + "\n");
@@ -94,17 +90,15 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
 
                 //이제 JSON 을 만들어 줘야 하므로 구분하자
                 //넌 무슨 기능이니? select, insert, delete
-                Log.v("message", "DocumentNetwork 구분 시작");
+
                 if(where.equals("select")){
                     //return 값이 없고
                     parserSelect(stringBuffer.toString());
-
                 }
                 else {
                     //insert, update, delete
                     //return 값이 있다.
                     result = parserAction(stringBuffer.toString());
-                    Log.v("Message","result :" + result);
 
                 }
             }
@@ -130,7 +124,6 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
 
     // insert, update, delete
     private  String parserAction(String str){
-        Log.v("Message","parserAction");
         String returnValue = null;
         try {
             JSONObject jsonObject = new JSONObject(str);
@@ -146,16 +139,15 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
         Log.v("Message","parserSelect");
         try{
             JSONObject jsonObject = new JSONObject(str);
-            Log.v("Message","jsonObject 진입");
+
             JSONArray jsonArray = new JSONArray(jsonObject.getString("document_info"));
-            Log.v("Message","jsonArray 진입");
+
             documentBeans.clear();
-            Log.v("Message", "  - parserSelect : helperLists clear OK");
+
 
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String dnumber = jsonObject1.getString("dnumber");
-                String dgaga = jsonObject1.getString("dgaga");
                 String dproduct = jsonObject1.getString("dproduct");
                 String dtitle = jsonObject1.getString("dtitle");
                 String dimage = jsonObject1.getString("dimage");
@@ -164,12 +156,10 @@ public class DocumentNetworkTask extends AsyncTask<Integer,String,Object> {
                 String dtime = jsonObject1.getString("dtime");
                 String dplace = jsonObject1.getString("dplace");
                 String dmoney = jsonObject1.getString("dmoney");
-                String dpay = jsonObject1.getString("dpay");
                 String unumber = jsonObject1.getString("unumber");
                 String hnumber = jsonObject1.getString("hnumber");
-                Log.v("Message","dnumber:" + dnumber + "dgaga :" + dgaga);
                 //어레이에 있는거 뽑아와서 빈
-                DocumentBean documentBean = new DocumentBean(dnumber,dgaga,dproduct,dtitle,dimage,dcontent,ddate,dtime,dplace,dmoney,dpay,unumber,hnumber);
+                DocumentBean documentBean = new DocumentBean(dnumber,dproduct,dtitle,dimage,dcontent,ddate,dtime,dplace,dmoney,unumber,hnumber);
                 documentBeans.add(documentBean);
                 //members는 어레이리스트, member는 빈
                 //--->for문 돌면서 차곡차곡 쌓기

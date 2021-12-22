@@ -42,7 +42,7 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
     Intent intent= null;
 
     //TextView 들
-    TextView DwaitingDetails_tvDgaga, DwaitingDetails_tvDplace;
+    TextView DwaitingDetails_tvDplace;
 
     EditText DwaitingDetails_etDtitle, DwaitingDetails_etDcontent,
             DwaitingDetails_etDmoney;
@@ -52,10 +52,10 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
     ImageView DwaitingDetails_ivDimage;
 
     //입력된 값을 받을 변수들
-    String sDproduct, sDtitle, sDcontent, sDplace, sDmoney, sDpay, sDgaga;
+    String sDproduct, sDtitle, sDcontent, sDplace, sDmoney;
     DatePicker dpDate;
     DatePicker DwaitingDetails_tvDdate;
-    String resultdpDate ;
+    String resultdpDate;
     TimePicker tpTime;
     TimePicker DwaitingDetails_tvDtime;
     String nHour, nMinute;
@@ -65,7 +65,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
     //spinner작업
     Spinner Dproducts;
     Spinner DwaitingDetails_etDproducts;
-    Spinner DwaitingDetails_tvDpay;
     ArrayAdapter<CharSequence> adapter = null;
 
     @Override
@@ -91,7 +90,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
         DwaitingDetails_tvDdate = findViewById(R.id.DwaitingDetails_dpDate);
         DwaitingDetails_tvDtime = findViewById(R.id.DwaitingDetails_tpTime);
         DwaitingDetails_etDmoney = findViewById(R.id.DwaitingDetails_etMoney);
-        DwaitingDetails_tvDpay = findViewById(R.id.DwaitingDetails_sDpay);
 
         //입력 자릿수 제한
         DwaitingDetails_etDtitle.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
@@ -170,7 +168,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
 
         connectGetData();
 
-        DwaitingDetails_tvDgaga.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDgaga());
 //        DwaitingDetails_etDproducts.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDproduct());
         DwaitingDetails_etDtitle.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDtitle());
         DwaitingDetails_etDcontent.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDcontent());
@@ -200,7 +197,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
                     Log.v("Message","dnumber는 어떻게 들어옵니까"+dnumber);
 
                     //화면에 입력된 값 가져오기
-                    sDgaga = DwaitingDetails_tvDgaga.getText().toString();
                     sDproduct = Dproducts.getSelectedItem().toString();
                     sDtitle = DwaitingDetails_etDtitle.getText().toString();
                     sDcontent = DwaitingDetails_etDcontent.getText().toString();
@@ -210,9 +206,8 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
                     sDmoney = DwaitingDetails_etDmoney.getText().toString();
 
 
-                    urlAddr = ShareVar.urlAddr + subUrl_update +"dgaga="+ sDgaga + "&dproduct=" + sDproduct + "&dtitle=" + sDtitle + "&dcontent=" + sDcontent
-                            + "&ddate=" + resultdpDate + "&dtime=" + tpTime + "&dplace=" + sDplace + "&dmoney=" + sDmoney + "&dpay=" + sDpay
-                            + "&dnumber=" + dnumber;
+                    urlAddr = ShareVar.urlAddr + subUrl_update + "&dproduct=" + sDproduct + "&dtitle=" + sDtitle + "&dcontent=" + sDcontent
+                            + "&ddate=" + resultdpDate + "&dtime=" + tpTime + "&dplace=" + sDplace + "&dmoney=" + sDmoney + "&dnumber=" + dnumber;
 
                     String result_up = connectUpdateData();
 
@@ -221,19 +216,6 @@ public class DocumentWaitingDetailsActivity extends AppCompatActivity {
                     Intent intent = new Intent(DocumentWaitingDetailsActivity.this, MainActivity.class);
                     startActivity(intent);
                     break;
-
-                case R.id.DwaitingDetails_btnFurniture:
-                    DwaitingDetails_btnFurniture.setBackgroundColor(Color.YELLOW);
-                    DwaitingDetails_btnElectronics.setBackgroundColor(Color.GRAY);
-                    sDgaga = "가구";
-                    break;
-
-                case R.id.DwaitingDetails_btnElectronics:
-                    DwaitingDetails_btnFurniture.setBackgroundColor(Color.GRAY);
-                    DwaitingDetails_btnElectronics.setBackgroundColor(Color.YELLOW);
-                    sDgaga = "가전";
-                    break;
-
             }
 
         } // onClick

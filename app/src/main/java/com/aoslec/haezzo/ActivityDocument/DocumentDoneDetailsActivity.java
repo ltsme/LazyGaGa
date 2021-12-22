@@ -81,8 +81,6 @@ public class DocumentDoneDetailsActivity extends AppCompatActivity {
         urlAddr = ShareVar.urlAddr + "documentSelect.jsp?";
 
         connectGetData();
-
-        DdoneDetails_tvDgaga.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDgaga());
         DdoneDetails_tvDproducts.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDproduct());
         DdoneDetails_tvDtitle.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDtitle());
         DdoneDetails_tvDcontent.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDcontent());
@@ -90,7 +88,6 @@ public class DocumentDoneDetailsActivity extends AppCompatActivity {
         DdoneDetails_tvDtime.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDtime());
         DdoneDetails_tvDplace.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDplace());
         DdoneDetails_tvDmoney.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDmoney());
-        DdoneDetails_tvDpay.setText(documentBeans.get((Integer.parseInt(dnumber))-1).getDpay());
 
         Glide.with(this)
                 .load(ShareVar.urlAddr + documentBeans.get((Integer.parseInt(dnumber))-1).getDimage())

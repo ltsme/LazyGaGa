@@ -34,8 +34,8 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
     int dnumberInt;
 
     //TextView 들
-    TextView HDdetails_btnFurniture,HDdetails_btnElectronics,HDdetails_tvDproducts,HDdetails_tvDtitle, HDdetails_tvDcontent, HDdetails_tvDdate,HDdetails_tvDtime,
-            HDdetails_tvDplace,HDdetails_tvDmoney,HDdetails_tvDpay;
+    TextView HDdetails_tvDproducts, HDdetails_tvDtitle, HDdetails_tvDcontent, HDdetails_tvDdate,HDdetails_tvDtime,
+            HDdetails_tvDplace, HDdetails_tvDmoney;
 
     Button HDdetails_btnDapply;
     ImageView HDdetails_ivDimage;
@@ -44,8 +44,6 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_haezulgae_document_details);
-        Log.v("Message", "HaezulgaeDetails_onCreate");
-
         intent = getIntent();
 
         // dnumber를 인텐트로 받아옴.
@@ -63,7 +61,6 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
         HDdetails_tvDtime = findViewById(R.id.HDdetails_tvDtime);
         HDdetails_tvDplace = findViewById(R.id.HDdetails_tvDplace);
         HDdetails_tvDmoney = findViewById(R.id.HDdetails_tvDmoney);
-        HDdetails_tvDpay = findViewById(R.id.HDdetails_tvDpay);
 
         //이미지뷰 연결
         HDdetails_ivDimage = findViewById(R.id.HDdetails_ivDimage);
@@ -128,7 +125,6 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
         HDdetails_tvDtime.setText(documentBeans.get(dnumberInt-1).getDtime());
         HDdetails_tvDplace.setText(documentBeans.get(dnumberInt-1).getDplace());
         HDdetails_tvDmoney.setText(documentBeans.get(dnumberInt-1).getDmoney());
-        HDdetails_tvDpay.setText(documentBeans.get(dnumberInt-1).getDpay());
 
         Glide.with(this)
                 .load(ShareVar.urlAddr + documentBeans.get(dnumberInt-1).getDimage())

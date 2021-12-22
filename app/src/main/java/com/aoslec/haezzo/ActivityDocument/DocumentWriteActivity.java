@@ -47,7 +47,6 @@ public class DocumentWriteActivity extends AppCompatActivity {
     String nHour, nMinute;
     EditText etTitle, etContent, etMoney, etAddress;
 
-    String dindex = "nonSimple"; // Simple, nonSimple 구별 용
     String dproduct, dtitle, dcontent, dtime, dplace, dmoney;
     String dimage = "tmpImage";
     DatePicker dpDate;
@@ -154,7 +153,7 @@ public class DocumentWriteActivity extends AppCompatActivity {
                         switch (result) {
                             case 1:
                                 //get방식 url
-                                urlAddr = urlAddr + "dindex=" + dindex + "&dproduct=" + dproduct + "&dtitle=" + dtitle +
+                                urlAddr = urlAddr + "&dproduct=" + dproduct + "&dtitle=" + dtitle +
                                         "&dimage=" + dimage + "&dcontent=" + dcontent + "&ddate=" + resultdpDate + "&dtime=" + dtime + "&dplace=" + dplace + "&dmoney=" +dmoney + "&dstatus=" + dstatus + "&unumber=" + ShareVar.strUnumber;
 
                                 //urlAddr는 전역변수라 아무 메소드에서 쓸 수 있음

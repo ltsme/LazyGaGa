@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         // 메인 에서 주소 출력되는 부분
         tv_main_address = findViewById(R.id.tvbtn_main_address);
         tmpAddress = strAddress.substring(strAddress.indexOf("시 ")+1, strAddress.indexOf("동")+1);
-        Log.e("log","체크3");
         tv_main_address.setText(tmpAddress);
 
         // 버튼 클릭 이벤트 (아래에서 case로 나뉘어짐)
@@ -175,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
 //                    }
                     break;
 
+                    // 주소 영역
                 case R.id.tvbtn_main_address:
                     Intent intent4 = new Intent(getApplicationContext(), MypageActivity.class);
                     startActivity(intent4);

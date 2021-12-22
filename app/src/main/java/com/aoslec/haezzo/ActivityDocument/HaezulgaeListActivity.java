@@ -34,7 +34,6 @@ public class HaezulgaeListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v("Message","HaezulgaeListActivity_onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_haezulgae_list);
 
@@ -43,7 +42,6 @@ public class HaezulgaeListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.lv_haezulgaeList);
         layoutManager = new LinearLayoutManager(HaezulgaeListActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-
 
     } // onCreate
 
@@ -58,15 +56,11 @@ public class HaezulgaeListActivity extends AppCompatActivity {
         try {
             HaezulgaeListNetworkTask haezulgaeListNetworkTask = new HaezulgaeListNetworkTask(HaezulgaeListActivity.this, urlAddr, "select");
             Object obj = haezulgaeListNetworkTask.execute().get();
-            Log.v("Message","HelperListActivity_networkTask" + haezulgaeListNetworkTask);
             haezulgaeListBeans = (ArrayList<HaezulgaeListBean>) obj;
-            Log.v("Message","HelperListActivity_helperListBeans" + haezulgaeListBeans);
 
             haezulgaeListAdapter = new HaezulgaeListAdapter(HaezulgaeListActivity.this, R.layout.haezulgae_custom_layout, haezulgaeListBeans);
             haezulgaeListAdapter.setOnItemClickListener(adapterClick);
             recyclerView.setAdapter(haezulgaeListAdapter);
-
-
 
         } catch (Exception e){
             e.printStackTrace();
@@ -81,7 +75,7 @@ public class HaezulgaeListActivity extends AppCompatActivity {
             Intent intent = new Intent(HaezulgaeListActivity.this, HaezulgaeDocumentDetailsActivity.class);
             String dnumber = haezulgaeListBeans.get(position).getDnumber();
             intent.putExtra("dnumber",dnumber);
-            Log.v("Message","dnumber = " + dnumber);
+            Log.v(ShareVar.TAG + "해줄게리스트","dnumber = " + dnumber);
             startActivity(intent);
         }
     };

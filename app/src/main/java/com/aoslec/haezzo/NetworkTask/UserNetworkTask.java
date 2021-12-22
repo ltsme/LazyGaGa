@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.aoslec.haezzo.Bean.UserListBean;
+import com.aoslec.haezzo.ShareVar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -76,7 +77,7 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
         try{
 
             URL url = new URL(mAddr);//ip주소 -- 생성자 할때 받음
-            Log.e("Message","UserNetworkTask_doinBackGround_url = " + url + " 입니다.");
+            Log.v(ShareVar.TAG + "UserNetworkTask","url = " + url);
             HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
             //서버 받으려면 무조건 httpurl 필요하구나.
@@ -85,7 +86,6 @@ public class UserNetworkTask extends AsyncTask<Integer,String,Object> {
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
-                Log.e("Message","bufferedReader :" + bufferedReader + "입니다.");
 
                 //--> string 인식 하려구!
                 while (true){
