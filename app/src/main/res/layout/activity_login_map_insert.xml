@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="지도에 현재 위치, 주소가 \n 잘 나오는지 확인해 주세요 :)"
             android:textColor="@color/brown"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:gravity="center"
             />
 

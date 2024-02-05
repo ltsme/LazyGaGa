@@ -8,68 +8,70 @@
 
     <com.kakao.usermgmt.LoginButton
         android:id="@+id/btn_kakaoLogin"
-        android:layout_width="307dp"
-        android:layout_height="53dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
         android:background="@drawable/kakao_login_medium_wide"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.750" />
 
-    <Button
-        android:id="@+id/btn_naverLogin"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:background="@drawable/button_round_rectangle"
-        android:text="네이버로 로그인 하기?"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:background="@drawable/naver_login_wide"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.845" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.850"
+        />
+
 
     <TextView
         android:id="@+id/tv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="해쭤"
-        android:textSize="50dp"
         android:textColor="@color/black"
+        android:textSize="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.150" />
 
     <TextView
         android:id="@+id/tv_main2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="✓ 가전, 가구 전문 거래 app"
-        android:textSize="20dp"
+        android:text="✓ 능력 거래 전문 app"
         android:textColor="@color/black"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_main"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.020" />
 
     <ImageButton
         android:id="@+id/btn_howtouse"
-        android:layout_width="68dp"
-        android:layout_height="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
         android:background="@drawable/button_round_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintHorizontal_bias="0.850"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintVertical_bias="0.500"
         app:srcCompat="@drawable/marker" />
 
     <TextView
@@ -83,7 +85,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.500" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,10 +94,9 @@
         android:textColor="#808080"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintVertical_bias="0.980" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

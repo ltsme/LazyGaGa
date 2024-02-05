@@ -14,5 +14,9 @@
         <!-- Customize your theme here. -->
         <!-- 폰트 일괄 적용 해보기-->
         <item name="android:fontFamily">@font/uhbee_regular</item>
+        <!-- 안드로이드 타이틀 바 없애기-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
+
 </resources>

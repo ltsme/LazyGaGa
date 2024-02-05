@@ -2,30 +2,24 @@ package com.aoslec.haezzo.Bean;
 
 public class HaezulgaeListBean {
     private String dnumber;
-    private String dproduct;
     private String dtitle;
     private String dimage;
     private String dcontent;
     private String ddate;
     private String dtime;
     private String dplace;
-    private String dmoney;
     private String unumber;
     private String hnumber;
 
     //---------------------Constructor
-
-
-    public HaezulgaeListBean(String dnumber, String dproduct, String dtitle, String dimage, String dcontent, String ddate, String dtime, String dplace, String dmoney, String unumber, String hnumber) {
+    public HaezulgaeListBean(String dnumber, String dtitle, String dimage, String dcontent, String ddate, String dtime, String dplace, String unumber, String hnumber) {
         this.dnumber = dnumber;
-        this.dproduct = dproduct;
         this.dtitle = dtitle;
         this.dimage = dimage;
         this.dcontent = dcontent;
         this.ddate = ddate;
         this.dtime = dtime;
         this.dplace = dplace;
-        this.dmoney = dmoney;
         this.unumber = unumber;
         this.hnumber = hnumber;
     }
@@ -39,14 +33,6 @@ public class HaezulgaeListBean {
 
     public void setDnumber(String dnumber) {
         this.dnumber = dnumber;
-    }
-
-    public String getDproduct() {
-        return dproduct;
-    }
-
-    public void setDproduct(String dproduct) {
-        this.dproduct = dproduct;
     }
 
     public String getDtitle() {
@@ -97,14 +83,6 @@ public class HaezulgaeListBean {
         this.dplace = dplace;
     }
 
-    public String getDmoney() {
-        return dmoney;
-    }
-
-    public void setDmoney(String dmoney) {
-        this.dmoney = dmoney;
-    }
-
     public String getUnumber() {
         return unumber;
     }
@@ -120,4 +98,4 @@ public class HaezulgaeListBean {
     public void setHnumber(String hnumber) {
         this.hnumber = hnumber;
     }
-}//—
+}//

@@ -26,14 +26,6 @@
         <activity android:name=".ActivityDocument.DocumentWriteActivity" />
         <activity android:name=".ActivityDocument.HaezulgaeDocumentDetailsActivity" />
         <activity android:name=".ActivityDocument.HaezulgaeListActivity" />
-        <activity android:name=".ActivityDocument.SimpleDocumentWriteActivity" />
-
-        <activity android:name=".ActivityHelperApply.HelperApplyAccountActivity" />
-        <activity android:name=".ActivityHelperApply.HelperApplyFinalActivity" />
-        <activity android:name=".ActivityHelperApply.HelperApplyIdCardActivity" />
-        <activity android:name=".ActivityHelperApply.HelperApplyIntroActivity" />
-        <activity android:name=".ActivityHelperApply.HelperApplyProfileActivity" />
-        <activity android:name=".ActivityHelperApply.HelperApplyProfileImageActivity" />
 
         <activity android:name=".ActivityLogin.GetDBDataActivity" />
         <activity android:name=".ActivityLogin.KakaoLoginActivity" />
@@ -41,10 +33,7 @@
         <activity android:name=".ActivityLogin.KakaoLoginSubActivity" />
 
         <activity android:name=".ActivityOnDealList.OnDealListActivity" />
-        <activity android:name=".ActivityPayment.Pay1Activity" />
-        <activity android:name=".ActivityPayment.Pay2Activity" />
 
-        <activity android:name=".ActivityUserHelper.HelperListActivity" />
         <activity android:name=".ActivityUserHelper.MypageActivity" />
         <activity android:name=".ActivityUserHelper.MypageFixActivity" />
 

@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.3"
+        android:layout_weight="0.35"
         android:gravity="center"
         >
 
@@ -45,9 +45,8 @@
             android:layout_weight="1.5"
             android:text="내 정보수정"
             android:textColor="@color/brown" />
-
-
     </LinearLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -64,22 +63,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.35"
+        android:layout_weight="0.20"
         android:layout_margin="15dp"
         >
 
         <Button
-            android:id="@+id/btn_payTest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="내 프로필 관리 (임시 결제)"
-            android:backgroundTint="@color/brown"
-            />
-
-        <Button
             android:id="@+id/btn_review"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="리뷰 관리"
             android:backgroundTint="@color/brown"
             />
@@ -98,7 +89,7 @@
         android:layout_weight="0.22"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         >
         <TextView
             android:layout_width="0px"
@@ -107,6 +98,7 @@
             android:text="나이"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             />
 
         <TextView
@@ -119,6 +111,7 @@
             android:background="@drawable/stroke"
             android:gravity="center"
             android:padding="10dp"
+            android:layout_gravity="center"
             />
     </LinearLayout>
 
@@ -138,6 +131,7 @@
             android:text="성별"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             />
 
         <TextView
@@ -145,16 +139,16 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="남"
-            android:textSize="15sp"
             android:background="@drawable/stroke"
             android:gravity="center"
             android:padding="10dp"
-            />
+            android:text="남"
+            android:layout_gravity="center"
+            android:textSize="15sp" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="0.22"
@@ -169,7 +163,8 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="0.5"
             android:text="이메일"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/tv_mypage_email"
@@ -181,9 +176,7 @@
             android:background="@drawable/stroke"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_marginBottom="15dp"
-
-            />
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
@@ -194,6 +187,7 @@
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         >
         <TextView
             android:layout_width="0px"
@@ -202,6 +196,7 @@
             android:text="현재 위치"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             />
 
         <TextView
@@ -213,7 +208,8 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="서울시"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
 
 
     </LinearLayout>
@@ -237,7 +233,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.2"
+        android:layout_weight="0.20"
         >
         <Button
             android:id="@+id/myPage_btnLogout"
@@ -245,8 +241,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="로그아웃"
+            android:layout_gravity="center"
             android:textColor="@color/brown"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             />
 
     </LinearLayout>

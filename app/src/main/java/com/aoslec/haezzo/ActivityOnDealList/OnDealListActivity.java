@@ -78,7 +78,7 @@ public class OnDealListActivity extends AppCompatActivity {
 
         // 바텀 네비게이션 버튼
         menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_home_black_24dp);
-        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_yellow_24dp);
+        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_baseline_list_alt_24_yellow);
         menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
     }
 

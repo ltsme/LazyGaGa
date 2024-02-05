@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.aoslec.haezzo.ActivityDocument.DocumentWriteActivity;
-import com.aoslec.haezzo.ActivityDocument.HaezulgaeDocumentDetailsActivity;
 import com.aoslec.haezzo.ActivityDocument.HaezulgaeListActivity;
-import com.aoslec.haezzo.ActivityDocument.SimpleDocumentWriteActivity;
 import com.aoslec.haezzo.ActivityOnDealList.OnDealListActivity;
 import com.aoslec.haezzo.ActivityUserHelper.MypageActivity;
 import com.aoslec.haezzo.Bean.UserListBean;
@@ -38,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private String tmpurlAddr ;
     private ArrayList<UserListBean> userListBeans;
 
-    ImageButton main_btnHaezzo, main_btnSimpleHaezzo, main_btnHaezulgae;
+    ImageButton main_btnHaezzo, main_btnHaezulgae;
 
     Menu menu;
     BottomNavigationView main_bottomNavigationView;
@@ -49,12 +46,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 메인 에서 주소 출력되는 부분
-        tv_main_address = findViewById(R.id.tvbtn_main_address);
         tmpAddress = strAddress.substring(strAddress.indexOf("시 ")+1, strAddress.indexOf("동")+1);
+        tv_main_address = (TextView) findViewById(R.id.tv_main_address);
         tv_main_address.setText(tmpAddress);
-
-        // 버튼 클릭 이벤트 (아래에서 case로 나뉘어짐)
-        tv_main_address.setOnClickListener(onClickListener);
 
         //해쭤 버튼 누르면 헬퍼보이는 리스트로 넘어가기
         main_btnHaezzo = findViewById(R.id.main_btnHaezzo);
@@ -64,10 +58,6 @@ public class MainActivity extends AppCompatActivity {
         main_btnHaezulgae = findViewById(R.id.main_btnHaezulgae);
         main_btnHaezulgae.setOnClickListener(onClickListener);
 
-        //요청하기 버튼 눌렀을 때
-        main_btnSimpleHaezzo = findViewById(R.id.main_btnSimpleHaezzo);
-        main_btnSimpleHaezzo.setOnClickListener(onClickListener);
-
         //바텀 네비게이션 뷰 눌렀을때
         main_bottomNavigationView = (BottomNavigationView)findViewById(R.id.main_bottom_navigation);
         main_bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -75,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 바텀 네비게이션 버튼
         menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_home_yellow_24dp);
-        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_baseline_list_alt_24);
         menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_black_24dp);
 
     }//onCreate
@@ -137,47 +127,17 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.main_btnHaezzo:
-                    // Intent intent = new Intent(MainActivity.this, HelperListActivity.class);
+                    // Intent intent = new Intent(MainActivity.this, HelperListActivity.class); ??
                     Intent intent = new Intent(MainActivity.this, DocumentWriteActivity.class);
                     startActivity(intent);
                     break;
 
-                case  R.id.main_btnSimpleHaezzo:
-                    Intent intent3 = new Intent(MainActivity.this, SimpleDocumentWriteActivity.class);
-                    startActivity(intent3);
-                    break;
-
                 case R.id.main_btnHaezulgae:
-
                     // 로그인 체크를 위해 GET 방식으로 작성
                     tmpurlAddr = urlAddr + "helperCheckSelect.jsp?" + "unumber=" + ShareVar.strUnumber;
                     connectLoginData();
-//                    if (userListBeans.get(0).getUemail().length()==0) { // 받은 hnumber가 비어 있을 때
-//                        new AlertDialog.Builder(MainActivity.this)
-//                                .setIcon(R.mipmap.ic_launcher)
-//                                .setTitle("헬퍼 등록")
-//                                .setMessage("'해줄게' 이용하시려면 \n 헬퍼가 되야 해요. \n 등록하시겠어요?")
-//                                .setNegativeButton("아니오", null )
-//                                .setPositiveButton("예", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        Intent intent3 = new Intent(MainActivity.this, HelperApplyIntroActivity.class);
-//                                        startActivity(intent3);
-//
-//                                    }
-//                                })
-//                                .show();
-//
-//                    } else{
                         Intent intent2 = new Intent(MainActivity.this, HaezulgaeListActivity.class);
                         startActivity(intent2);
-//                    }
-                    break;
-
-                    // 주소 영역
-                case R.id.tvbtn_main_address:
-                    Intent intent4 = new Intent(getApplicationContext(), MypageActivity.class);
-                    startActivity(intent4);
                     break;
             }
         }
@@ -193,5 +153,4 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }//

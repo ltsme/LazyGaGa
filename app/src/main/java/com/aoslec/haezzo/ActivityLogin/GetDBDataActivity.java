@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class  GetDBDataActivity extends AppCompatActivity {
 
     //DB에서 값을 가져와서 ShareVar에 넣는 코드.
-
     private String strUnumber = "";
     private String strNickname = "";
     private String strProfileImg = "";
@@ -100,6 +99,4 @@ public class  GetDBDataActivity extends AppCompatActivity {
         }
 
     }//connectGetdata
-
-
 }

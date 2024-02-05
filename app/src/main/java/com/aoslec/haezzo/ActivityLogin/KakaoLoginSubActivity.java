@@ -16,7 +16,7 @@ import com.aoslec.haezzo.ShareVar;
 public class KakaoLoginSubActivity extends AppCompatActivity {
 
     private String strNick;
-    EditText et_nickname ;
+    EditText et_nickname;
 
     private Button btn_Ok;
 
@@ -33,7 +33,7 @@ public class KakaoLoginSubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakao_login_sub);
 
-        Log.v("LoginSub","LoginSubActivity");
+        Log.v("LoginSub", "LoginSubActivity");
 
         et_nickname = findViewById(R.id.et_nickname);
 
@@ -53,23 +53,26 @@ public class KakaoLoginSubActivity extends AppCompatActivity {
             urlAddr = urlAddr + "uimage=" + strProfileImg + "&uage=" + strAgeRange +
                     "&ufm=" + strGender + "&unickname=" + strNick + "&uaddress=" + strAddress + "&uemail=" + strEmail;
 
+
             String result = connectInsertData();
 
-                Intent intent = new Intent(KakaoLoginSubActivity.this, GetDBDataActivity.class);
-                startActivity(intent);
-                KakaoLoginSubActivity.this.finish();
+
+
+            Intent intent = new Intent(KakaoLoginSubActivity.this, GetDBDataActivity.class);
+            startActivity(intent);
+            KakaoLoginSubActivity.this.finish();
         }
     };
 
-    private String connectInsertData(){
+    private String connectInsertData() {
         String result = null;
 
-        try{
-            UserNetworkTask userNetworkTask = new UserNetworkTask(KakaoLoginSubActivity.this, urlAddr,"insert");
+        try {
+            UserNetworkTask userNetworkTask = new UserNetworkTask(KakaoLoginSubActivity.this, urlAddr, "insert");
             //jsp통해서 받아온 return 값 -> object
             Object obj = userNetworkTask.execute().get();
             result = (String) obj;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result; //잘끝났으면 1 아니면 0

@@ -14,9 +14,6 @@ import android.widget.TextView;
 
 import com.aoslec.haezzo.ActivityOnDealList.OnDealListActivity;
 import com.aoslec.haezzo.ActivityLogin.KakaoLoginActivity;
-import com.aoslec.haezzo.Bean.UserListBean;
-import com.aoslec.haezzo.NetworkTask.UserNetworkTask;
-import com.aoslec.haezzo.ActivityPayment.Pay1Activity;
 import com.aoslec.haezzo.MainActivity;
 import com.aoslec.haezzo.R;
 import com.aoslec.haezzo.ShareVar;
@@ -25,10 +22,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
-import java.util.ArrayList;
-
 public class MypageActivity extends AppCompatActivity {
-    Button button, button_fixmypage;
+    Button button_fixmypage;
     BottomNavigationView main_bottomNavigationView;
 
     private String strNick = ShareVar.strNick;
@@ -62,14 +57,10 @@ public class MypageActivity extends AppCompatActivity {
         tv_email.setText(strEmail);
         tv_gender.setText(strGender);
         tv_agerange.setText(strAgeRange);
-        tv_address.setText(strAddress);
+        tv_address.setText(strAddress.substring(strAddress.indexOf("시 ") + 1, strAddress.indexOf("동") + 1));
 
         //Glide를 이용해 이미지 파일 불러와 프로필 사진으로 set
         Glide.with(this).load(strProfileImg).into(iv_profileimg);
-
-        // 결제 버튼 (임시)
-        button = findViewById(R.id.btn_payTest);
-        button.setOnClickListener(onClickListener);
 
         // 내 정보 수정 버튼
         button_fixmypage = findViewById(R.id.btn_fixmypage);
@@ -104,7 +95,7 @@ public class MypageActivity extends AppCompatActivity {
 
         // 바텀 네비게이션 버튼
         menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_home_black_24dp);
-        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_dashboard_black_24dp);
+        menu.findItem(R.id.navigation_list).setIcon(R.drawable.ic_baseline_list_alt_24);
         menu.findItem(R.id.navigation_mypage).setIcon(R.drawable.ic_mypage_yellow_24dp);
 
     } //onCreate
@@ -114,21 +105,6 @@ public class MypageActivity extends AppCompatActivity {
         super.onResume();
 
     }
-
-
-
-    //
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.btn_payTest:
-                    Intent intent2 = new Intent(MypageActivity.this, Pay1Activity.class);
-                    startActivity(intent2);
-                    break;
-            }
-        }
-    };
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

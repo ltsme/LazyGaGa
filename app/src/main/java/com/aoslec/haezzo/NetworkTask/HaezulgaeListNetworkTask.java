@@ -64,7 +64,6 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
         progressDialog.dismiss();
     }
     //--------------------------------progress 작업 끝
-
     //--------------------------------data 작업
 
     @Override
@@ -94,11 +93,11 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
                     stringBuffer.append(strline + "\n");
                 }
                 //이제 JSON 을 만들어 줘야 하므로 구분하자
-                //넌 무슨 기능이니? select, insert, delete
+                //넌 무슨 기능이니? select
                 if(where.equals("select")){
                     //return 값이 없고
                     parserSelect(stringBuffer.toString());
-                }else {
+                }else { // insert, update, delete
                     //return 값이 있다.
                     result = parserAction(stringBuffer.toString());
 
@@ -120,7 +119,7 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
         if(where.equals("select")){
             return haezulgaeListBeans; // select는 엄청 많은 값이 들어올거임
         }else{
-            return  result; //입력 수정 삭제는 잘했다 못했다만 넘어 올거고
+            return  result; // insert, update, delete는 잘했다 못했다만 넘어 올거고
         }
     }//doinback
 
@@ -145,25 +144,24 @@ public class HaezulgaeListNetworkTask extends AsyncTask<Integer,String,Object> {
             JSONArray jsonArray = new JSONArray(jsonObject.getString("document_info"));
             haezulgaeListBeans.clear();
 
+            Log.v("test_info","TEST START");
+            Log.v("test_info", jsonArray.toString());
+
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String dnumber = jsonObject1.getString("dnumber");
-                String dproduct = jsonObject1.getString("dproduct");
                 String dtitle = jsonObject1.getString("dtitle");
                 String dimage = jsonObject1.getString("dimage");
                 String dcontent = jsonObject1.getString("dcontent");
                 String ddate = jsonObject1.getString("ddate");
                 String dtime = jsonObject1.getString("dtime");
                 String dplace = jsonObject1.getString("dplace");
-                String dmoney = jsonObject1.getString("dmoney");
                 String unumber = jsonObject1.getString("unumber");
                 String hnumber = jsonObject1.getString("hnumber");
 
-                //여기 까지 함
-
                 Log.v(ShareVar.TAG + "HaezulgaeListNetwork","unumber : " + unumber);
                 //어레이에 있는거 뽑아와서 빈에 올리기
-                HaezulgaeListBean haezulgaeListBean = new HaezulgaeListBean(dnumber,dproduct,dtitle,dimage,dcontent,ddate,dtime, dplace, dmoney, unumber, hnumber);
+                HaezulgaeListBean haezulgaeListBean = new HaezulgaeListBean(dnumber, dtitle,dimage,dcontent,ddate,dtime, dplace, unumber, hnumber);
                 haezulgaeListBeans.add(haezulgaeListBean);
                 //members는 어레이리스트, member는 빈
                 //--->for문 돌면서 차곡차곡 쌓기

@@ -30,9 +30,9 @@ import java.util.ArrayList;
 
 public class KakaoLoginActivity extends AppCompatActivity {
 
-    // 돌려쓰기 위해 public static으로 IP값을 잡는다.
     private String macIP = ShareVar.macIP;
     private String urlAddr = ShareVar.urlAddr;
+
     private String profileImg = "";
     private String email = "";
     private String gender = "";
@@ -67,20 +67,17 @@ public class KakaoLoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onSuccess(MeV2Response result) { // 로그인 성공 시, 정보를 result에 담아서 줌
+                    public void onSuccess(MeV2Response result) { // Kakao 로그인 성공 시, 정보를 result에 담아서 줌
 
                         email = result.getKakaoAccount().getEmail(); // 이메일
                         agerange = result.getKakaoAccount().getAgeRange().getValue(); // 나이대
                         gender = result.getKakaoAccount().getGender().getValue(); // 성별
-
-                        // 로그인 후, result에서 필요한 정보를 얻어 옴
                         profileImg = result.getKakaoAccount().getProfile().getProfileImageUrl(); // 프로필 이미지
 
                         ShareVar.strEmail = email;
                         ShareVar.strGender = gender;
                         ShareVar.strAgeRange = agerange;
                         ShareVar.strProfileImg = profileImg;
-
 
                         // 로그인 체크를 위해 GET 방식으로 작성
                         urlAddr = urlAddr + "kakaoLoginSelect.jsp?" + "uemail=" + email;
@@ -96,6 +93,9 @@ public class KakaoLoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             KakaoLoginActivity.this.finish();
                         }
+                        Intent intent = new Intent(KakaoLoginActivity.this, KakaoLoginMapInsertActivity.class);
+                            startActivity(intent);
+                            KakaoLoginActivity.this.finish();
                     } // onSuccess
                 });
             } // onSessionOpened

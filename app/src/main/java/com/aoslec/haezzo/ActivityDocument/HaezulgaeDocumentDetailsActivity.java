@@ -34,8 +34,8 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
     int dnumberInt;
 
     //TextView 들
-    TextView HDdetails_tvDproducts, HDdetails_tvDtitle, HDdetails_tvDcontent, HDdetails_tvDdate,HDdetails_tvDtime,
-            HDdetails_tvDplace, HDdetails_tvDmoney;
+    TextView HDdetails_tvDtitle, HDdetails_tvDcontent, HDdetails_tvDdate,HDdetails_tvDtime,
+            HDdetails_tvDplace;
 
     Button HDdetails_btnDapply;
     ImageView HDdetails_ivDimage;
@@ -54,13 +54,11 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
         hnumber = ShareVar.hnumber;
 
         //textView 연결
-        HDdetails_tvDproducts = findViewById(R.id.HDdetails_tvDproducts);
         HDdetails_tvDtitle = findViewById(R.id.HDdetails_tvDtitle);
         HDdetails_tvDcontent = findViewById(R.id.HDdetails_tvDcontent);
         HDdetails_tvDdate = findViewById(R.id.HDdetails_tvDdate);
         HDdetails_tvDtime = findViewById(R.id.HDdetails_tvDtime);
         HDdetails_tvDplace = findViewById(R.id.HDdetails_tvDplace);
-        HDdetails_tvDmoney = findViewById(R.id.HDdetails_tvDmoney);
 
         //이미지뷰 연결
         HDdetails_ivDimage = findViewById(R.id.HDdetails_ivDimage);
@@ -118,13 +116,11 @@ public class HaezulgaeDocumentDetailsActivity extends AppCompatActivity {
         urlAddr = ShareVar.urlAddr + "haezulgaeDocumentSelectList.jsp?";
         connectGetData();
 
-        HDdetails_tvDproducts.setText(documentBeans.get(dnumberInt-1).getDproduct());
         HDdetails_tvDtitle.setText(documentBeans.get(dnumberInt-1).getDtitle());
         HDdetails_tvDcontent.setText(documentBeans.get(dnumberInt-1).getDcontent());
         HDdetails_tvDdate.setText(documentBeans.get(dnumberInt-1).getDdate());
         HDdetails_tvDtime.setText(documentBeans.get(dnumberInt-1).getDtime());
         HDdetails_tvDplace.setText(documentBeans.get(dnumberInt-1).getDplace());
-        HDdetails_tvDmoney.setText(documentBeans.get(dnumberInt-1).getDmoney());
 
         Glide.with(this)
                 .load(ShareVar.urlAddr + documentBeans.get(dnumberInt-1).getDimage())

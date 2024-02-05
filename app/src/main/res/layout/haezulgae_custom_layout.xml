@@ -2,134 +2,97 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    app:cardBackgroundColor="@color/yellow"
-    app:cardCornerRadius="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginBottom="4dp"
     android:clickable="true"
     android:focusable="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    app:cardCornerRadius="8dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-        <TextView
-            android:id="@+id/haezulgaeList_tvDnumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="5dp"
-            android:textColor="@color/brown"
-            android:padding="10dp"
-            android:text="1"
-
-            android:gravity="right"
-            />
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            >
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
 
             <WebView
                 android:id="@+id/haezulgaeList_wvImage"
-                android:layout_width="0px"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                >
+                android:background="@drawable/layout_coner_round"
+                />
 
-            </WebView>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:orientation="vertical">
 
-            
+            <TextView
+                android:id="@+id/haezulgaeList_tvDtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="여기는 제목이 들어갑니다."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0px"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:layout_weight="2"
-                android:background="#ffffff"
-                >
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/haezulgaeList_tvDtitle"
+                    android:id="@+id/haezulgaeList_tvDdate"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="2023-01-01" />
+
+                <TextView
+                    android:id="@+id/haezulgaeList_tvDtime"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:text="12:00" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/haezulgaeList_tvDplace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:text="경기도 구리시 행복아파트 2동" />
+
+                <TextView
+                    android:id="@+id/haezulgaeList_tvDstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/yellow"
                     android:textStyle="bold"
-                    android:text="제목" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
-                    <TextView
-                        android:id="@+id/haezulgaeList_tvDdate"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.2"
-                        android:gravity="center_horizontal"
-                        android:text="날짜" />
-
-                    <TextView
-                        android:id="@+id/haezulgaeList_tvDplace"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="장소"
-                        />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
-                    <TextView
-                        android:id="@+id/haezulgaeList_tvDproduct"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:gravity="center_horizontal"
-                        android:text="제품 종류" />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                >
-                    <TextView
-                        android:id="@+id/haezulgaeList_tvDmoney"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="가격"
-                        />
-
-                </LinearLayout>
-
+                    android:text="거래 전" />
             </LinearLayout>
 
         </LinearLayout>

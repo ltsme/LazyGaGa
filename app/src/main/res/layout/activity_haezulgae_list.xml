@@ -1,56 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp"
     tools:context=".ActivityDocument.HaezulgaeListActivity">
 
-
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="0.7"
-        android:background="@color/brown"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
         >
-
-        <Button
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="전체"
-            android:textColor="@color/brown"
-            android:layout_margin="10dp"
-            />
-        <Button
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="가구"
-            android:textColor="@color/brown"
-            android:layout_margin="10dp"
-            />
-        <Button
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="가전"
-            android:textColor="@color/brown"
-            android:layout_margin="10dp"
-
-            />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#4682B4" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="16dp"
         android:id="@+id/lv_haezulgaeList"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="4" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.3dp"
+            android:background="#4682B4" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="bottom">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_navigation_menu" />
+    </LinearLayout>
 </LinearLayout>

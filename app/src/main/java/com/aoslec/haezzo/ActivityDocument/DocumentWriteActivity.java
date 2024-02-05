@@ -41,21 +41,17 @@ import java.util.Date;
 public class DocumentWriteActivity extends AppCompatActivity {
 
     String urlAddr = null;
-    String urlAddr1 = null; // 이미지 업로드
+    String urlAddrImage = null; // 이미지 업로드
     Button btnWrite;
     String resultdpDate ;
     String nHour, nMinute;
-    EditText etTitle, etContent, etMoney, etAddress;
+    EditText etTitle, etContent, etAddress;
 
-    String dproduct, dtitle, dcontent, dtime, dplace, dmoney;
+    String dtitle, dcontent, dtime, dplace, tvDplace;
     String dimage = "tmpImage";
     DatePicker dpDate;
     TimePicker tpTime;
-    String dstatus = "대기 중"; //기본 값은 대기 중
-
-    //spinner작업
-    Spinner Dproducts;
-    ArrayAdapter<CharSequence> adapter = null;
+    String dstatus = "거래 전"; // 문서 작성 시 기본 값
 
     //------image 업로드, 지급수단, product 제외하고 진행 -----//
     private final static String TAG = ShareVar.TAG + "DocumentWriteActivity";
@@ -75,22 +71,20 @@ public class DocumentWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document_write);
 
+        // documentInsert.jsp
         urlAddr = ShareVar.urlAddr + "documentInsert.jsp?";
 
         ActivityCompat.requestPermissions(DocumentWriteActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
         ActivityCompat.requestPermissions(DocumentWriteActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MODE_PRIVATE);
 
-
         //연결
         etTitle = findViewById(R.id.wtire_etTitle);
         etContent = findViewById(R.id.write_etContent);
-        etMoney = findViewById(R.id.write_etMoney);
         etAddress = findViewById(R.id.write_etLocation);
         imageView = findViewById(R.id.iv_dwriteimage);
 
         //입력 자릿수 제한
         etTitle.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
-        etMoney.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15)});
 
         //버튼
         btnWrite = findViewById(R.id.write_btnWrite);
@@ -115,20 +109,10 @@ public class DocumentWriteActivity extends AppCompatActivity {
             }
         });
 
-        //카테고리 - spinner dproduct 연결
-        adapter = ArrayAdapter.createFromResource(this, R.array.dproduct_category,
-                android.R.layout.simple_spinner_dropdown_item);
-
-
-        Dproducts = findViewById(R.id.write_sDproducts);
-        Dproducts.setAdapter(adapter);
-
         //dplace 주소값 받아오기
         dplace = ShareVar.strAddress;
         etAddress.setText(dplace);
     }//onCreate
-
-
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -141,20 +125,20 @@ public class DocumentWriteActivity extends AppCompatActivity {
                     startActivityForResult(intent2, REQ_CODE_SELECT_IMAGE);
                     break;
                 case R.id.write_btnWrite:
+                    // 글쓰기 화면에서 데이터 가져오기
                     dtitle = etTitle.getText().toString();
+                    urlAddrImage = "http://"+ ShareVar.macIP + ":8080/Haezzo/multipartRequest.jsp";
                     dcontent = etContent.getText().toString();
-                    dmoney = etMoney.getText().toString();
-                    dproduct = Dproducts.getSelectedItem().toString();
+                    tvDplace = etAddress.getText().toString();
 
-                    urlAddr1 = "http://"+ ShareVar.macIP + ":8080/test/Haezzo/multipartRequest.jsp";
-                    DocumentImageNetworkTask networkTask = new DocumentImageNetworkTask(DocumentWriteActivity.this, urlAddr1, img_path, imageView);
+                    DocumentImageNetworkTask networkTask = new DocumentImageNetworkTask(DocumentWriteActivity.this, urlAddrImage, img_path, imageView);
                     try {
                         Integer result = networkTask.execute(100).get();
                         switch (result) {
                             case 1:
                                 //get방식 url
-                                urlAddr = urlAddr + "&dproduct=" + dproduct + "&dtitle=" + dtitle +
-                                        "&dimage=" + dimage + "&dcontent=" + dcontent + "&ddate=" + resultdpDate + "&dtime=" + dtime + "&dplace=" + dplace + "&dmoney=" +dmoney + "&dstatus=" + dstatus + "&unumber=" + ShareVar.strUnumber;
+                                urlAddr = urlAddr + "&dtitle=" + dtitle +
+                                        "&dimage=" + dimage + "&dcontent=" + dcontent + "&ddate=" + resultdpDate + "&dtime=" + dtime + "&dplace=" + tvDplace + "&dstatus=" + dstatus + "&unumber=" + ShareVar.strUnumber;
 
                                 //urlAddr는 전역변수라 아무 메소드에서 쓸 수 있음
                                 String strResult = connectInsertData();//여기에 return값 줄거임
@@ -249,7 +233,6 @@ public class DocumentWriteActivity extends AppCompatActivity {
         return imgPath;
     }
 
-
     private String connectInsertData(){
         String result = null;
         try{
@@ -265,8 +248,5 @@ public class DocumentWriteActivity extends AppCompatActivity {
         return  result;//잘끝났으면 1 아니면 다른값 넘길 거임
 
     }//connectInsertData
-
-
-
 
 }//—DocumentWrite
